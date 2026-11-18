@@ -7,6 +7,9 @@ FROM node:20-alpine
 # Set working directory
 WORKDIR /app
 
+# Install curl for health checks
+RUN apk add --no-cache curl
+
 # Copy dependency manifests first (layer-cache friendly)
 COPY package.json ./
 
