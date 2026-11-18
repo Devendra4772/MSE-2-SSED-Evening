@@ -3,7 +3,9 @@
 # Stage 2 – Serve the static assets with Nginx (lightweight runtime)
 
 # ── Stage 1: build ───────────────────────────────────────────────────
-FROM node:20-alpine AS builder
+# node:20-slim (Debian) is used here because Alpine (musl libc) can cause
+# native-binary issues with Vite / Rollup during the build step.
+FROM node:20-slim AS builder
 
 WORKDIR /app
 
